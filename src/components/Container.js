@@ -1,13 +1,36 @@
-import React from "react";
+
 import API from "/utils/API";
+import React, { Component } from 'react';
+import { render } from "@testing-library/react";
 
-const apiDATA = API.getUsers().then((res) => {
-  console.log(res.data.results);
+
+export default class Container extends Component {
+    state = {
+        users: [],
+        filteredUsers: [],
+    };
+
+componentDidMount() {
+API.getUsers().then((res) => {
+ this.setState({
+     users: res.data.results,
+
 });
+console.log(this.state);
+});
+mappedData= (data) => {
+    data.map((item) =>{
+        return item.name
+    });
+}
 
-const Container = () => {
-  return;
-  <div className="body">Directory Info will go here</div>;
-};
+}
+
+render() {
+  return (
+  <div className="body">Directory Info will go here</div>
+  );
+}
+
 
 export default Container;
